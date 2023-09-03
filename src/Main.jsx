@@ -9,9 +9,9 @@ function Main(props) {
 
   let sortedProducts = [...props.users];
  const assending = () => {
-  console.log("hi 1");
+ 
     if (sortedField !== null) {
-      console.log("in 1");
+     
       sortedProducts.sort((a, b) => {
         if (a[sortedField] < b[sortedField]) {
           return -1;
@@ -28,9 +28,9 @@ function Main(props) {
   };
 
  const dessending = () => {
-  console.log("hi 2");
+  
     if (sortedField !== null) {
-      console.log("in 2");
+     
       sortedProducts.sort((a, b) => {
         if (a[sortedField] > b[sortedField]) {
           return -1;
