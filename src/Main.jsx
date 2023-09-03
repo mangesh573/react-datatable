@@ -7,34 +7,50 @@ function Main(props) {
   const [sortedField, setSortedField] = useState(null);
   const [sort, setSort] = useState(true);
 
-  useEffect(() => {
-    let sortedProducts = [...props.users];
-    if (sort) {
-      if (sortedField !== null) {
-        sortedProducts.sort((a, b) => {
-          if (a[sortedField] < b[sortedField]) {
-            return -1;
-          }
-          if (a[sortedField] > b[sortedField]) {
-            return 1;
-          }
-          return 0;
-        });
-      }
-    } else {
-      if (sortedField !== null) {
-        sortedProducts.sort((a, b) => {
-          if (a[sortedField] > b[sortedField]) {
-            return -1;
-          }
-          if (a[sortedField] < b[sortedField]) {
-            return 1;
-          }
-          return 0;
-        });
-      }
+  let sortedProducts = [...props.users];
+ const assending = () => {
+  console.log("hi 1");
+    if (sortedField !== null) {
+      console.log("in 1");
+      sortedProducts.sort((a, b) => {
+        if (a[sortedField] < b[sortedField]) {
+          return -1;
+        }
+        if (a[sortedField] > b[sortedField]) {
+          return 1;
+        }
+
+        return 0;
+      });
+      setSort(false);
+      setSortedField(null)
     }
+  };
+
+ const dessending = () => {
+  console.log("hi 2");
+    if (sortedField !== null) {
+      console.log("in 2");
+      sortedProducts.sort((a, b) => {
+        if (a[sortedField] > b[sortedField]) {
+          return -1;
+        }
+        if (a[sortedField] < b[sortedField]) {
+          return 1;
+        }
+
+        return 0;
+      });
+      setSort(true);
+      setSortedField(null)
+    }
+  };
+
+  useEffect(() => {
     props.setUsers(sortedProducts);
+    if(sortedField!==null){
+      sort ? assending() : dessending()
+    }
   }, [sortedField]);
 
   return props.users ? (
@@ -51,9 +67,10 @@ function Main(props) {
                 FirstName
                 <button
                   className="p-0 border-0 bg-transparent"
-                  onClick={() => {
-                    setSortedField("firstName");
-                  }}
+                  onClick={() => (
+                    setSortedField("firstName")
+                  
+                  )}
                 >
                   <svg
                     xmlns="http://www.w3.org/2000/svg"
